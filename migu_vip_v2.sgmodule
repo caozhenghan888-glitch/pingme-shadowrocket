@@ -1,0 +1,11 @@
+#!name=咪咕视频解锁会员 v2
+#!desc=Shadowrocket 兼容版，带命中通知
+#!author=Suny
+#!update=2026-05-18
+
+[Script]
+咪咕视频请求头处理 = type=http-request, pattern=^https?:\/\/(play|play-pre|v|v[0-9]?-sc|vmesh|app-sc|vms-sc|display(-sc)?|common-sc|program-sc|d[0-9]-sc|fs-sc|fsdv-sc|mp-user|recommend-dy|chat|chat-wx|public-deliver[0-9]?|public-operbiz[0-9]?|public-img)\.miguvideo\.com\/.+, script-path=https://raw.githubusercontent.com/caozhenghan888-glitch/pingme-shadowrocket/main/migu_vip_v2.js, timeout=60
+咪咕账号请求头处理 = type=http-request, pattern=^https?:\/\/(passport|uem|push|jadeite|jadeiteapp|hound|feedback|rcsdk)\.migu\.cn\/.+, script-path=https://raw.githubusercontent.com/caozhenghan888-glitch/pingme-shadowrocket/main/migu_vip_v2.js, timeout=60
+
+[MITM]
+hostname = %APPEND% *.miguvideo.com, *.migu.cn
