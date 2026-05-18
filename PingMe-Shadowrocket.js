@@ -1,6 +1,21 @@
+//2026/05/11
+/*
+@Name：PingMe 自动化签到+视频奖励
+@Author：怎么肥事
+
+[rewrite_local]
+^https:\/\/api\.pingmeapp\.net\/app\/queryBalanceAndBonus url script-request-header https://raw.githubusercontent.com/ZenmoFeiShi/Qx/refs/heads/main/PingMe.js
+
+[task_local]
+30 8,20 * * * https://raw.githubusercontent.com/ZenmoFeiShi/Qx/refs/heads/main/PingMe.js, tag=PingMe签到, enabled=true
+
+[MITM]
+hostname = api.pingmeapp.net
+*/
+
 const scriptName = 'PingMe';
 const storeKey = 'pingme_accounts_v1';
-const SECRET = '0fOiuk…LGlO';
+const SECRET = '0fOiukQq7jXZV2GRi9LGlO';
 const MAX_VIDEO = 5;
 const VIDEO_DELAY = 8000;
 const ACCOUNT_GAP = 3500;
@@ -333,3 +348,4 @@ if (typeof $request !== 'undefined' && $request) {
     });
   }
 }
+
