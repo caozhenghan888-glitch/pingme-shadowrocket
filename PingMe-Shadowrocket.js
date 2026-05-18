@@ -249,7 +249,7 @@ function runAccount(acc, index, total) {
             try {
               const d = JSON.parse(res.body);
               if (d.retcode === 0) {
-                msgs.push(`🎬 视频${i}：+${d.result?.bonus || '?'} Coins`);
+                msgs.push(`🎬 视频${i}：+${(d.result && d.result.bonus) || '?'} Coins`);
                 resolve(next());
               } else {
                 msgs.push(`⏸ 视频${i}：${d.retmsg}`);
@@ -279,7 +279,7 @@ function runAccount(acc, index, total) {
   }).then(res => {
     try {
       const d = JSON.parse(res.body);
-      if (d.retcode === 0) msgs.push(`✅ 签到：${(d.result?.bonusHint || d.retmsg || '').replace(/\n/g, ' ')}`);
+      if (d.retcode === 0) msgs.push(`✅ 签到：${(((d.result && d.result.bonusHint) || d.retmsg || '')).replace(/\n/g, ' ')}`);
       else msgs.push(`⚠️ 签到：${d.retmsg}`);
     } catch (e) { msgs.push('❌ 签到：解析失败'); }
     return doVideoLoop(MAX_VIDEO);
