@@ -219,7 +219,19 @@ function buildHeaders(capture, ua) {
 }
 
 function notify(title, body) {
-  $notify(scriptName, title, body);
+  try {
+    if (typeof $notification !== 'undefined' && $notification && typeof $notification.post === 'function') {
+      $notification.post(scriptName, title, body);
+      return;
+    }
+  } catch (e) {}
+  try {
+    if (typeof $notify === 'function') {
+      $notify(scriptName, title, body);
+      return;
+    }
+  } catch (e) {}
+  try { console.log('NOTIFY ' + title + ' :: ' + body); } catch (e) {}
 }
 
 function sleep(ms) {
@@ -321,12 +333,14 @@ if (typeof $request !== 'undefined' && $request) {
   saveStore(store);
 
   const total = store.order.length;
+  console.log(`【${scriptName}】capture hit fp=${fp} existed=${existed} total=${total}`);
   notify(existed ? '🔄 账号参数已更新' : '✅ 新账号已入库', `${alias}（id:${fp}）\n当前账号总数：${total}`);
   console.log(`【${scriptName}】${existed ? 'update' : 'add'} account ${fp}\n${JSON.stringify(store.accounts[fp], null, 2)}`);
   $done({});
 } else {
   const store = loadStore();
   const ids = store.order.filter(id => store.accounts[id]);
+  console.log(`【${scriptName}】cron/manual run accounts=${ids.length}`);
   if (!ids.length) {
     notify('⚠️ 未抓到任何账号', '请先打开 PingMe 触发抓包');
     $done();
