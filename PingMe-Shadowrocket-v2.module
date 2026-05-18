@@ -1,0 +1,9 @@
+#!name=PingMe 自动签到+视频任务 v2
+#!desc=Shadowrocket 专用版 v2：抓取 PingMe 账号参数并每天执行两次签到+视频奖励
+
+[Script]
+http-request ^https:\/\/api\.pingmeapp\.net\/app\/queryBalanceAndBonus.* script-path=https://raw.githubusercontent.com/caozhenghan888-glitch/pingme-shadowrocket/main/PingMe-Shadowrocket-v2.js, requires-body=0, timeout=60, tag=PingMe 抓包 v2
+cron "30 8,20 * * *" script-path=https://raw.githubusercontent.com/caozhenghan888-glitch/pingme-shadowrocket/main/PingMe-Shadowrocket-v2.js, timeout=300, tag=PingMe 签到 v2
+
+[MITM]
+hostname = api.pingmeapp.net
