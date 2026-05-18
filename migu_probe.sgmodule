@@ -1,0 +1,9 @@
+#!name=咪咕Probe
+#!desc=仅用于验证 Shadowrocket 是否命中咪咕请求
+
+[Script]
+咪咕视频探针 = type=http-request, pattern=^https?:\/\/.*\.miguvideo\.com\/.+, script-path=https://raw.githubusercontent.com/caozhenghan888-glitch/pingme-shadowrocket/main/migu_probe.js, timeout=20
+咪咕账号探针 = type=http-request, pattern=^https?:\/\/.*\.migu\.cn\/.+, script-path=https://raw.githubusercontent.com/caozhenghan888-glitch/pingme-shadowrocket/main/migu_probe.js, timeout=20
+
+[MITM]
+hostname = %APPEND% *.miguvideo.com, *.migu.cn
