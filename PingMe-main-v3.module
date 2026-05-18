@@ -1,0 +1,9 @@
+#!name=PingMe 主脚本 v3
+#!desc=先验证抓包保存和定时入口，确认主链路完全可用
+
+[Script]
+http-request ^https:\/\/api\.pingmeapp\.net\/app\/queryBalanceAndBonus.* script-path=https://raw.githubusercontent.com/caozhenghan888-glitch/pingme-shadowrocket/main/PingMe-main-v3.js, requires-body=0, timeout=20, tag=PingMe 主脚本 v3 抓包
+cron "30 8,20 * * *" script-path=https://raw.githubusercontent.com/caozhenghan888-glitch/pingme-shadowrocket/main/PingMe-main-v3.js, timeout=30, tag=PingMe 主脚本 v3 定时
+
+[MITM]
+hostname = api.pingmeapp.net
